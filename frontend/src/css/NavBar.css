@@ -1,0 +1,19 @@
+/* Navbar semplice e coerente con il tema */
+.navbar-custom {
+  background-color: #c3d2f7; /* sfondo chiaro coerente con la pagina */
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+  color: #4173e8; /* blu principale */
+  font-weight: 500;
+  transition: color 0.2s ease; /* transizione rapida per hover e click */
+}
+
+.navbar-custom .nav-link:hover {
+  color: #7397eb; /* azzurro chiaro al passaggio */
+}
+
+.navbar-custom .nav-link:active {
+  color: #3056b3; /* blu più scuro per indicare il click */
+}
