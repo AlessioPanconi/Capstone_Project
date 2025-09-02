@@ -84,14 +84,15 @@ h4 {
 }
 
 .homepage-header {
-  background: #7397eb;
+  background: linear-gradient(rgba(115, 151, 235, 0.7), rgba(213, 224, 248, 0.9));
   color: white;
-  padding: 3rem 1rem;
+  padding: 4rem 1rem;
   border-radius: 12px;
+  text-align: center;
 }
 
 .homepage-section {
-  background-color: #c3d2f7;
+  background: linear-gradient(rgba(115, 151, 235, 0.7), rgba(213, 224, 248, 0.9));
   padding: 2rem;
   border-radius: 8px;
 }

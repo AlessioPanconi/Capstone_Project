@@ -1,0 +1,25 @@
+.footer {
+  background-color: #7397eb;
+}
+
+.footer h5 {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.footer p,
+.footer a {
+  color: white;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #7397eb;
+  text-decoration: underline;
+}
+
+.footer .small {
+  font-size: 0.75rem;
+}
