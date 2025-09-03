@@ -7,7 +7,7 @@ function NavBar() {
     <Navbar expand="lg" className="navbar-custom">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          Psicologa
+          <img src={"../src/assets/logo.png"} alt="Logo Dott.ssa Panconi" className="homepage-logo" />
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>

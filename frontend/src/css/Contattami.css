@@ -1,0 +1,32 @@
+.contatti-page {
+  min-height: 100vh;
+  background: url("../assets/sfondo.avif") no-repeat center center fixed;
+  background-size: cover;
+  padding: 2rem;
+  color: #1a1a1a;
+}
+
+.contatti-page h2 {
+  color: #4173e8;
+  font-family: "Poppins", sans-serif;
+}
+
+.contatti-page .form-control {
+  border-radius: 8px;
+  border: 1px solid #aabeef;
+}
+
+.contatti-page .btn-primary {
+  background-color: #4173e8;
+  border: none;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.contatti-page .btn-primary:hover {
+  background-color: #7397eb;
+}
+
+.contact-info p {
+  margin: 0.3rem 0;
+}

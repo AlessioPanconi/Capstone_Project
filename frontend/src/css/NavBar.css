@@ -1,19 +1,22 @@
-/* Navbar semplice e coerente con il tema */
 .navbar-custom {
-  background-color: #7397eb; /* sfondo chiaro coerente con la pagina */
+  background-color: #7397eb;
 }
-
 .navbar-custom .navbar-brand,
 .navbar-custom .nav-link {
-  color: #d5e0f8; /* blu principale */
+  color: #d5e0f8;
   font-weight: 500;
-  transition: color 0.2s ease; /* transizione rapida per hover e click */
+  transition: color 0.2s ease;
 }
 
 .navbar-custom .nav-link:hover {
-  color: #aabeef; /* azzurro chiaro al passaggio */
+  color: #aabeef;
 }
 
 .navbar-custom .nav-link:active {
-  color: #3056b3; /* blu più scuro per indicare il click */
+  color: #3056b3;
+}
+
+.homepage-logo {
+  width: clamp(80px, 13vw, 150px);
+  height: auto;
 }

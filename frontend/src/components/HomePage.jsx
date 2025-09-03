@@ -16,13 +16,11 @@ function HomePage() {
       scrollbar={{ draggable: true }}
       style={{ height: "100vh" }}
     >
-      {/* Header */}
       <SwiperSlide className="homepage-header">
         <h2>Benvenuti nella pagina della Dott.ssa Panconi</h2>
         <p>Uno spazio sicuro per ascoltarti, comprenderti e accompagnarti verso il tuo benessere.</p>
       </SwiperSlide>
 
-      {/* Chi sono */}
       <SwiperSlide className="homepage-section">
         <Row className="align-items-center justify-content-center">
           <Col xs={12} md={7} className="text-center text-md-start">
@@ -42,7 +40,6 @@ function HomePage() {
         </Row>
       </SwiperSlide>
 
-      {/* Percorso formativo */}
       <SwiperSlide className="homepage-section">
         <h3>Il mio percorso formativo</h3>
         <p>
@@ -57,7 +54,6 @@ function HomePage() {
         </p>
       </SwiperSlide>
 
-      {/* A chi mi rivolgo */}
       <SwiperSlide className="homepage-section">
         <h3>A chi mi rivolgo?</h3>
         <p>
