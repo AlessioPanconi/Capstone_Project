@@ -70,14 +70,13 @@ function HomePage() {
         </p>
       </SwiperSlide>
 
-      {/* Servizi principali */}
       <SwiperSlide className="homepage-services">
         <h3>Servizi principali</h3>
         <Row className="justify-content-center mt-4">
-          <Col xs={12} sm={6} md={4} className="mb-4">
-            <Card className="shadow-sm h-100">
+          <Col xs={12} sm={10} md={5} className="mb-4">
+            <Card className="shadow-sm h-100 service-card">
               <Card.Body>
-                <Card.Title>Terapia individuale</Card.Title>
+                <Card.Title className="card-title">Terapia individuale</Card.Title>
                 <Card.Text>Un percorso personalizzato per affrontare ansia e stress.</Card.Text>
                 <Button as={Link} to="/services" variant="primary">
                   Dettagli
@@ -86,10 +85,10 @@ function HomePage() {
             </Card>
           </Col>
 
-          <Col xs={12} sm={6} md={4} className="mb-4">
-            <Card className="shadow-sm h-100">
+          <Col xs={12} sm={10} md={5} className="mb-4">
+            <Card className="shadow-sm h-100 service-card">
               <Card.Body>
-                <Card.Title>Sostegno online</Card.Title>
+                <Card.Title className="card-title">Sostegno online</Card.Title>
                 <Card.Text>Colloqui comodamente da casa tramite videochiamata.</Card.Text>
                 <Button as={Link} to="/services" variant="primary">
                   Dettagli
