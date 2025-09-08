@@ -2,9 +2,9 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../css/NavBar.css";
 
-function NavBar() {
+function NavBar({ fixed }) {
   return (
-    <Navbar expand="lg" className="navbar-custom">
+    <Navbar expand="lg" className="navbar-custom" fixed={fixed}>
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img src={"../src/assets/logo.png"} alt="Logo Dott.ssa Panconi" className="homepage-logo" />

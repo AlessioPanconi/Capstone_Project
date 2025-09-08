@@ -1,12 +1,45 @@
-@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&display=swap");
-
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: "Playfair Display", serif !important;
+  font-family: "Poppins", sans-serif;
   font-weight: 600 !important;
   color: rgb(0, 104, 230) !important;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  color: white;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.btn-primary,
+.btn-link {
+  background-color: rgb(0, 104, 230);
+  color: white;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+  border: none;
+}
+
+.btn-primary:hover,
+.btn-link:hover {
+  background-color: #7397eb;
+}
+
+.service-card,
+.card {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover,
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }

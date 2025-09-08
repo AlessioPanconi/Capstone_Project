@@ -1,17 +1,29 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import "../App.css";
 import "../css/Contattami.css";
 
 function Contatti() {
   return (
-    <div className="contatti-page">
+    <div className="contattami-page">
       <Container className="py-5">
-        <Row className="justify-content-center">
-          <Col md={8} lg={6}>
-            <h2 className="text-center mb-4">Contattami</h2>
-            <p className="text-center mb-5">
-              Se desideri ricevere maggiori informazioni o fissare un appuntamento, compila il modulo oppure utilizza i recapiti indicati.
-            </p>
+        <h2 className="text-center mb-4">Contattami</h2>
+        <p className="text-center mb-5">
+          Se desideri ricevere maggiori informazioni o fissare un appuntamento, utilizza i recapiti qui sotto oppure compila il modulo.
+        </p>
 
+        <Row className="justify-content-center align-items-start">
+          <Col xs={12} md={6} className="mb-4 mb-md-0 text-center text-md-start">
+            <div className="contact-info">
+              <p>
+                <strong>Telefono:</strong> +39 333 1234567
+              </p>
+              <p>
+                <strong>Studio:</strong> Via Roma 10, Pisa
+              </p>
+            </div>
+          </Col>
+
+          <Col xs={12} md={6}>
             <Form>
               <Form.Group className="mb-3" controlId="formNome">
                 <Form.Label>Nome</Form.Label>
@@ -32,18 +44,6 @@ function Contatti() {
                 Invia
               </Button>
             </Form>
-
-            <div className="contact-info mt-5 text-center">
-              <p>
-                <strong>Email:</strong> dott.panconi@example.com
-              </p>
-              <p>
-                <strong>Telefono:</strong> +39 333 1234567
-              </p>
-              <p>
-                <strong>Studio:</strong> Via Roma 10, Pisa
-              </p>
-            </div>
           </Col>
         </Row>
       </Container>

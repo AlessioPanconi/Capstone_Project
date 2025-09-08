@@ -1,6 +1,7 @@
 .navbar-custom {
-  background-color: #589adc;
+  background-color: rgba(88, 154, 220, 1);
 }
+
 .navbar-custom .navbar-brand,
 .navbar-custom .nav-link {
   color: #d5e0f8;
@@ -15,7 +16,7 @@
 }
 
 .navbar-custom .nav-link:active {
-  color: rgb(70, 92, 237);
+  color: rgb(88, 154, 220);
 }
 
 .homepage-logo {
