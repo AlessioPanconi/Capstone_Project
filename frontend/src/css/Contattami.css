@@ -26,3 +26,36 @@ body .contattami-page {
 .contact-info p {
   margin: 0.3rem 0;
 }
+
+.link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color: #4173e8;
+}
+.office-image {
+  width: 8vw;
+  height: 8vw;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .office-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 576px) {
+  .office-image {
+    width: 70px;
+    height: 70px;
+  }
+}
