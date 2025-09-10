@@ -18,8 +18,8 @@ function NavBar({ fixed }) {
             <Nav.Link as={Link} to="/servizi">
               Servizi
             </Nav.Link>
-            <Nav.Link as={Link} to="/contatti">
-              Contatti
+            <Nav.Link as={Link} to="/informazioni">
+              Informazioni
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

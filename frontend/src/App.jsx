@@ -1,33 +1,17 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
-import Contatti from "./components/Contattami";
+import Informazioni from "./components/Informazioni";
 
 function App() {
   return (
     <BrowserRouter>
+      <NavBar />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <NavBar /> {/* navbar normale */}
-              <HomePage />
-            </>
-          }
-        />
-
-        <Route
-          path="/contatti"
-          element={
-            <>
-              <NavBar fixed="top" /> {/* navbar fissa solo qui */}
-              <Contatti />
-            </>
-          }
-        />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/Informazioni" element={<Informazioni />} />
       </Routes>
     </BrowserRouter>
   );

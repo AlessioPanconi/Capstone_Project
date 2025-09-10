@@ -1,5 +1,9 @@
 .navbar-custom {
   background-color: rgba(88, 154, 220, 1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .navbar-custom .navbar-brand,
@@ -15,11 +19,7 @@
   color: #aabeef;
 }
 
-.navbar-custom .nav-link:active {
-  color: rgb(88, 154, 220);
-}
-
 .homepage-logo {
-  width: clamp(60px, 10vw, 115px);
+  width: clamp(70px, 15vw, 125px);
   height: auto;
 }
