@@ -11,23 +11,28 @@
 }
 
 .contact-card {
-  background-color: rgba(255, 255, 255, 0.94);
+  width: 100%;
+  padding: 1rem;
+  background-color: #589adc;
+  color: #d5e0f8;
   border: none;
-  border-radius: 12px;
-  color: #1a1a1a;
-
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   min-height: 440px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  margin: 0 auto;
+}
+
+.card-title {
+  color: rgb(0, 104, 230);
 }
 
 .contact-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .office-image {
