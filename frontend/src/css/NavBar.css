@@ -10,7 +10,7 @@
 .navbar-custom .nav-link {
   color: #d5e0f8;
   font-weight: 500;
-  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 1vw, 1.05rem);
   line-height: 1;
   transition: color 0.2s ease;
 }
@@ -19,7 +19,28 @@
   color: #aabeef;
 }
 
+.navbar-toggler {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  outline: none;
+  box-shadow: none;
+}
 .homepage-logo {
-  width: clamp(70px, 15vw, 125px);
+  width: clamp(70px, 12vw, 125px);
   height: auto;
+}
+
+.navbar-collapse .navbar-nav {
+  flex-direction: row !important;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.navbar-collapse {
+  text-align: center;
 }

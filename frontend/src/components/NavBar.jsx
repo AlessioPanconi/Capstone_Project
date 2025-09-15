@@ -9,7 +9,9 @@ function NavBar({ fixed }) {
         <Navbar.Brand as={Link} to="/">
           <img src={"../src/assets/logo.png"} alt="Logo Dott.ssa Panconi" className="homepage-logo" />
         </Navbar.Brand>
-        <Navbar.Toggle />
+        <Navbar.Toggle>
+          <i class="bi bi-three-dots-vertical"></i>
+        </Navbar.Toggle>
         <Navbar.Collapse>
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/">
