@@ -1,8 +1,39 @@
+import { useState } from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import "../App.css";
 import "../css/Informazioni.css";
 
 function Informazioni() {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [messaggio, setMessaggio] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setError("");
+    setSuccess("");
+
+    if (!nome || !email || !messaggio) {
+      setError("Per favore compila tutti i campi.");
+      return;
+    }
+
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+      setError("Inserisci un'email valida.");
+      return;
+    }
+
+    setSuccess("Messaggio inviato correttamente!");
+
+    setNome("");
+    setEmail("");
+    setMessaggio("");
+  };
+
   return (
     <div className="informazioni-page">
       <Container fluid className="py-5 d-flex flex-column align-items-center">
@@ -37,7 +68,6 @@ function Informazioni() {
               </p>
 
               <h4 className="mt-3">Dove trovarmi</h4>
-
               <div className="office-row">
                 <div className="office-item">
                   <a
@@ -73,21 +103,24 @@ function Informazioni() {
           <Col xs={12} md={10} lg={8} className="d-flex">
             <Card className="p-4 shadow-sm contact-card w-100">
               <h4 className="mb-3">Scrivimi un messaggio</h4>
-              <Form className="flex-grow-1 d-flex flex-column">
+              <Form onSubmit={handleSubmit} className="flex-grow-1 d-flex flex-column">
                 <Form.Group className="mb-3" controlId="formNome">
                   <Form.Label>Nome</Form.Label>
-                  <Form.Control type="text" placeholder="Inserisci il tuo nome" />
+                  <Form.Control type="text" placeholder="Inserisci il tuo nome" value={nome} onChange={(e) => setNome(e.target.value)} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formEmail">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Inserisci la tua email" />
+                  <Form.Control type="email" placeholder="Inserisci la tua email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </Form.Group>
 
-                <Form.Group className="mb-4 flex-grow-1" controlId="formMessaggio">
+                <Form.Group className="mb-4" controlId="formMessaggio">
                   <Form.Label>Messaggio</Form.Label>
-                  <Form.Control as="textarea" rows={5} placeholder="Scrivi il tuo messaggio" className="h-100" />
+                  <Form.Control as="textarea" rows={5} placeholder="Scrivi il tuo messaggio" value={messaggio} onChange={(e) => setMessaggio(e.target.value)} />
                 </Form.Group>
+
+                {error && <p className="text-danger">{error}</p>}
+                {success && <p className="text-success">{success}</p>}
 
                 <Button variant="primary" type="submit" className="w-100 mt-auto">
                   Invia
