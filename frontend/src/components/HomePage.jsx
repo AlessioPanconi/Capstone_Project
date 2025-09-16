@@ -3,8 +3,7 @@ import { Scrollbar, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "../css/HomePage.css";
-import { Button, Card, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
 
 function HomePage() {
   return (
@@ -68,35 +67,6 @@ function HomePage() {
         <p>
           <strong>“Le cicatrici mostrano dove siamo stati, ma non dove dobbiamo andare.” — J.K. Rowling, Harry Potter e i Doni della Morte</strong>
         </p>
-      </SwiperSlide>
-
-      <SwiperSlide className="homepage-services">
-        <h3>Servizi principali</h3>
-        <Row className="justify-content-center mt-4">
-          <Col xs={12} sm={10} md={5} className="mb-4">
-            <Card className="shadow-sm h-100 service-card">
-              <Card.Body>
-                <Card.Title className="card-title">Terapia individuale</Card.Title>
-                <Card.Text>Un percorso personalizzato per affrontare ansia e stress.</Card.Text>
-                <Button as={Link} to="/services" variant="primary">
-                  Dettagli
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col xs={12} sm={10} md={5} className="mb-4">
-            <Card className="shadow-sm h-100 service-card">
-              <Card.Body>
-                <Card.Title className="card-title">Sostegno online</Card.Title>
-                <Card.Text>Colloqui comodamente da casa tramite videochiamata.</Card.Text>
-                <Button as={Link} to="/services" variant="primary">
-                  Dettagli
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
       </SwiperSlide>
     </Swiper>
   );

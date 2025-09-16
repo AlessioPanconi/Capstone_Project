@@ -6,13 +6,11 @@ function Informazioni() {
   return (
     <div className="informazioni-page">
       <Container fluid className="py-5 d-flex flex-column align-items-center">
-        {/* Titolo e descrizione */}
         <h2 className="text-center mb-4">Informazioni di contatto</h2>
         <p className="text-center mb-5 px-3">
           Se desideri ricevere maggiori informazioni o capire dove mi trovo, utilizza i recapiti qui sotto oppure compila il modulo e inviami una mail.
         </p>
 
-        {/* Card recapiti */}
         <Row className="justify-content-center mb-4 w-100">
           <Col xs={12} md={10} lg={8} className="d-flex">
             <Card className="p-4 shadow-sm contact-card w-100">
@@ -25,10 +23,12 @@ function Informazioni() {
               </p>
               <p>
                 <i className="bi bi-envelope-fill me-2"></i>
-                <a href="giuliapanconipsicologa@gmail.com" className="link">
+                <a href="mailto:giuliapanconipsicologa@gmail.com" className="link">
                   giuliapanconipsicologa@gmail.com
                 </a>
               </p>
+
+              <h4 className="mb-3">I miei social</h4>
               <p>
                 <i className="bi bi-instagram me-3"></i>
                 <a href="https://www.instagram.com/dott.ssapsico_giuliapanconi/" className="link" target="_blank" rel="noopener noreferrer">
@@ -36,7 +36,7 @@ function Informazioni() {
                 </a>
               </p>
 
-              <h5 className="mt-3">Dove trovarmi</h5>
+              <h4 className="mt-3">Dove trovarmi</h4>
 
               <div className="office-row">
                 <div className="office-item">
