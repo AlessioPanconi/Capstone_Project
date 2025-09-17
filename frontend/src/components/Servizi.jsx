@@ -53,10 +53,8 @@ function Servizi() {
       ...formData,
     });
 
-    // Mostra il messaggio di conferma nel modal
     setSuccessMessage("Prenotazione inviata con successo! ✅");
 
-    // Chiude il modal dopo 2 secondi
     setTimeout(() => {
       handleCloseModal();
     }, 2000);
