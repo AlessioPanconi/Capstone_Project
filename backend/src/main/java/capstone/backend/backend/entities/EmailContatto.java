@@ -11,8 +11,6 @@ import java.util.UUID;
 
 public class EmailContatto {
 
-
-
     @Id
     @GeneratedValue
     @Setter(AccessLevel.NONE)
