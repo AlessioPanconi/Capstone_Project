@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Card, Button, Modal, Form } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Modal, Form, Alert } from "react-bootstrap";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../css/Servizi.css";
@@ -11,20 +11,12 @@ function Servizi() {
   const [time, setTime] = useState("");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const services = [
-    {
-      title: "Supporto psicologico",
-      description: "Percorsi di ascolto e sostegno per affrontare momenti di difficoltà, stress e cambiamenti personali.",
-    },
-    {
-      title: "Terapia individuale",
-      description: "Un percorso personalizzato per lavorare su ansia, depressione, autostima e crescita personale.",
-    },
-    {
-      title: "Terapia di coppia",
-      description: "Spazio dedicato alla relazione, per migliorare la comunicazione e gestire i conflitti in coppia.",
-    },
+    { title: "Supporto psicologico", description: "Percorsi di ascolto e sostegno per affrontare momenti di difficoltà, stress e cambiamenti personali." },
+    { title: "Terapia individuale", description: "Un percorso personalizzato per lavorare su ansia, depressione, autostima e crescita personale." },
+    { title: "Terapia di coppia", description: "Spazio dedicato alla relazione, per migliorare la comunicazione e gestire i conflitti in coppia." },
     {
       title: "Supporto genitorialità",
       description: "Consulenze per genitori che desiderano migliorare la relazione con i propri figli e gestire sfide educative.",
@@ -34,6 +26,8 @@ function Servizi() {
   const handleOpenModal = (service) => {
     setSelectedService(service);
     setShowModal(true);
+    setSuccessMessage("");
+    setErrorMessage("");
   };
 
   const handleCloseModal = () => {
@@ -41,32 +35,55 @@ function Servizi() {
     setFormData({ name: "", email: "", message: "" });
     setTime("");
     setSelectedDate(new Date());
-    setSuccessMessage("");
+    setErrorMessage("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({
-      service: selectedService,
-      date: selectedDate,
-      time,
-      ...formData,
-    });
 
-    setSuccessMessage("Prenotazione inviata con successo! ✅");
+    try {
+      const response = await fetch("http://localhost:3001/prenotazioni", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: formData.name,
+          email: formData.email,
+          servizio: selectedService,
+          data: selectedDate.toISOString().split("T")[0],
+          ora: time,
+          messaggio: formData.message,
+        }),
+      });
 
-    setTimeout(() => {
-      handleCloseModal();
-    }, 2000);
+      if (!response.ok) {
+        // Mostra errore nel modale e non chiuderlo
+        const errMsg = await response.text();
+        setErrorMessage(errMsg);
+        return;
+      }
+
+      // Successo: mostra alert nella pagina principale e chiudi modale
+      setSuccessMessage("✅ Prenotazione inviata con successo!");
+      setTimeout(() => {
+        handleCloseModal();
+      }, 1500);
+    } catch (err) {
+      console.error(err);
+      setErrorMessage("Errore di connessione al server");
+    }
   };
 
   return (
     <div className="servizi-page">
       <Container className="py-5">
         <h2 className="text-center mb-4">Servizi Offerti</h2>
+        {successMessage && (
+          <Alert variant="success" className="text-center">
+            {successMessage}
+          </Alert>
+        )}
         <p className="text-center mb-5">
-          Scopri i percorsi di supporto psicologico disponibili e scegli quello più adatto alle tue esigenze. In futuro sarà possibile prenotare direttamente
-          online.
+          Scopri i percorsi di supporto psicologico disponibili e scegli quello più adatto alle tue esigenze. Prenota direttamente online.
         </p>
 
         <Row className="g-4">
@@ -93,7 +110,11 @@ function Servizi() {
           <Modal.Title>Prenotazione: {selectedService}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {successMessage && <div className="alert alert-success text-center mb-3">{successMessage}</div>}
+          {errorMessage && (
+            <Alert variant="danger" className="text-center">
+              {errorMessage}
+            </Alert>
+          )}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formName">
               <Form.Label>Nome</Form.Label>

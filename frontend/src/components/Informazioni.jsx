@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Card, Alert } from "react-bootstrap";
 import "../App.css";
 import "../css/Informazioni.css";
 
@@ -9,8 +9,9 @@ function Informazioni() {
   const [messaggio, setMessaggio] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setError("");
@@ -27,11 +28,30 @@ function Informazioni() {
       return;
     }
 
-    setSuccess("Messaggio inviato correttamente!");
+    try {
+      setLoading(true);
+      const response = await fetch("http://localhost:3001/messaggi", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, messaggio }),
+      });
 
-    setNome("");
-    setEmail("");
-    setMessaggio("");
+      if (!response.ok) {
+        const errMsg = await response.text();
+        setError(errMsg || "Errore nell'invio del messaggio.");
+        return;
+      }
+
+      setSuccess("Messaggio inviato correttamente! ✅");
+      setNome("");
+      setEmail("");
+      setMessaggio("");
+    } catch (err) {
+      console.error(err);
+      setError("Errore di connessione al server");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -76,8 +96,7 @@ function Informazioni() {
                     rel="noopener noreferrer"
                     className="link"
                   >
-                    <i className="bi bi-geo-alt-fill me-2"></i>
-                    Via del Fontana 18, Capannori
+                    <i className="bi bi-geo-alt-fill me-2"></i>Via del Fontana 18, Capannori
                   </a>
                   <img src={"../src/assets/ufficio Capannori.jpg"} alt="Ufficio Capannori" className="office-image" />
                 </div>
@@ -89,8 +108,7 @@ function Informazioni() {
                     rel="noopener noreferrer"
                     className="link"
                   >
-                    <i className="bi bi-geo-alt-fill me-2"></i>
-                    Via del Commercio 6, Viareggio
+                    <i className="bi bi-geo-alt-fill me-2"></i>Via del Commercio 6, Viareggio
                   </a>
                   <img src={"../src/assets/ufficio Bocchette.jpg"} alt="Ufficio Viareggio" className="office-image" />
                 </div>
@@ -119,11 +137,11 @@ function Informazioni() {
                   <Form.Control as="textarea" rows={5} placeholder="Scrivi il tuo messaggio" value={messaggio} onChange={(e) => setMessaggio(e.target.value)} />
                 </Form.Group>
 
-                {error && <p className="text-danger">{error}</p>}
-                {success && <p className="text-success">{success}</p>}
+                {error && <Alert variant="danger">{error}</Alert>}
+                {success && <Alert variant="success">{success}</Alert>}
 
-                <Button variant="primary" type="submit" className="w-100 mt-auto">
-                  Invia
+                <Button variant="primary" type="submit" className="w-100 mt-auto" disabled={loading}>
+                  {loading ? "Invio in corso..." : "Invia"}
                 </Button>
               </Form>
             </Card>
