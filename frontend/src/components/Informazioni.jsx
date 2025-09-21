@@ -30,7 +30,7 @@ function Informazioni() {
 
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:3001/messaggi", {
+      const response = await fetch("http://localhost:3001/contatti", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nome, email, messaggio }),
@@ -98,7 +98,7 @@ function Informazioni() {
                   >
                     <i className="bi bi-geo-alt-fill me-2"></i>Via del Fontana 18, Capannori
                   </a>
-                  <img src={"../src/assets/ufficio Capannori.jpg"} alt="Ufficio Capannori" className="office-image" />
+                  <img src={"./src/assets/ufficio Capannori.jpg"} alt="Ufficio Capannori" className="office-image" />
                 </div>
 
                 <div className="office-item">
@@ -110,7 +110,7 @@ function Informazioni() {
                   >
                     <i className="bi bi-geo-alt-fill me-2"></i>Via del Commercio 6, Viareggio
                   </a>
-                  <img src={"../src/assets/ufficio Bocchette.jpg"} alt="Ufficio Viareggio" className="office-image" />
+                  <img src={"./src/assets/ufficio Bocchette.jpg"} alt="Ufficio Viareggio" className="office-image" />
                 </div>
               </div>
             </Card>
