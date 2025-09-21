@@ -3,6 +3,7 @@ package capstone.backend.backend.controllers;
 import capstone.backend.backend.entities.EmailContatto;
 import capstone.backend.backend.repositories.EmailContattoRepository;
 import capstone.backend.backend.service.EmailService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +20,12 @@ public class EmailContattoController {
     private EmailService emailService;
 
     @PostMapping
-    public ResponseEntity<?> inviaMessaggio(@RequestBody EmailContatto contatto) {
+    public ResponseEntity<?> inviaMessaggio(@RequestBody @Valid EmailContatto contatto) {
 
         EmailContatto saved = contattoRepository.save(contatto);
 
         emailService.sendEmail(
-                "giuliapanconipsicologa@gmail.com   ",
+                "giuliapanconipsicologa@gmail.com",
                 "Nuovo contatto dal sito",
                 "Hai ricevuto un nuovo messaggio:\n\n" +
                         "Nome: " + contatto.getNome() + "\n" +
