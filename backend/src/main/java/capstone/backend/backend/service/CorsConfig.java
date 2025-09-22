@@ -1,4 +1,4 @@
-package capstone.backend.backend.config;
+package capstone.backend.backend.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

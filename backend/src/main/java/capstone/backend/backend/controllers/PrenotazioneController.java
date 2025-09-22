@@ -32,18 +32,18 @@ public class PrenotazioneController {
 
         Prenotazione saved = prenotazioneRepository.save(prenotazione);
 
-//        String adminMessage = String.format(
-//                "Hai una nuova prenotazione:\n\nNome: %s\nEmail: %s\nServizio: %s\nData: %s\nOra: %s\nMessaggio: %s",
-//                saved.getNome(), saved.getEmail(), saved.getServizio(), saved.getData(), saved.getOra(), saved.getMessaggio()
-//        );
-//
-//        String userMessage = String.format(
-//                "Ciao %s,\n\nla tua prenotazione è stata confermata!\n\nDettagli:\nServizio: %s\nData: %s\nOra: %s\n\nGrazie per averci scelto!",
-//                saved.getNome(), saved.getServizio(), saved.getData(), saved.getOra()
-//        );
-//
-//        emailService.sendEmail("giuliapanconipsicologa@gmail.com", "Nuova prenotazione ricevuta", adminMessage);
-//        emailService.sendEmail(saved.getEmail(), "Conferma prenotazione", userMessage);
+        String adminMessage = String.format(
+                "Hai una nuova prenotazione:\n\nNome: %s\nEmail: %s\nServizio: %s\nData: %s\nOra: %s\nMessaggio: %s",
+                saved.getNome(), saved.getEmail(), saved.getServizio(), saved.getData(), saved.getOra(), saved.getMessaggio()
+        );
+
+        String userMessage = String.format(
+                "Ciao %s,\n\nla tua prenotazione è stata confermata!\n\nDettagli:\nServizio: %s\nData: %s\nOra: %s\n\nGrazie per averci scelto!",
+                saved.getNome(), saved.getServizio(), saved.getData(), saved.getOra()
+        );
+
+        emailService.sendEmail("giuliapanconipsicologa@gmail.com", "Nuova prenotazione ricevuta", adminMessage);
+        emailService.sendEmail(saved.getEmail(), "Conferma prenotazione", userMessage);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
