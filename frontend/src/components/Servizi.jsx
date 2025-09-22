@@ -12,6 +12,9 @@ function Servizi() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [bookedTimes, setBookedTimes] = useState([]);
+
+  const allTimes = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
 
   const services = [
     { title: "Supporto psicologico", description: "Percorsi di ascolto e sostegno per affrontare momenti di difficoltà, stress e cambiamenti personali." },
@@ -28,6 +31,8 @@ function Servizi() {
     setShowModal(true);
     setSuccessMessage("");
     setErrorMessage("");
+    setTime("");
+    fetchBookedTimes(selectedDate);
   };
 
   const handleCloseModal = () => {
@@ -36,10 +41,41 @@ function Servizi() {
     setTime("");
     setSelectedDate(new Date());
     setErrorMessage("");
+    setBookedTimes([]);
+  };
+
+  const fetchBookedTimes = async (date) => {
+    const isoDate = date.toISOString().split("T")[0];
+    try {
+      const response = await fetch(`http://localhost:3001/prenotazioni/giorno/${isoDate}`);
+      const data = await response.json();
+      const times = data.map((p) => p.ora.slice(0, 5)); // prende solo HH:MM
+      setBookedTimes(times);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    fetchBookedTimes(date);
+    setTime("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setErrorMessage("");
+
+    if (!formData.name || !formData.email || !selectedDate || !time) {
+      setErrorMessage("Per favore compila tutti i campi obbligatori.");
+      return;
+    }
+
+    if (bookedTimes.includes(time)) {
+      setErrorMessage("Orario già prenotato, scegli un altro slot.");
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:3001/prenotazioni", {
@@ -56,13 +92,11 @@ function Servizi() {
       });
 
       if (!response.ok) {
-        // Mostra errore nel modale e non chiuderlo
         const errMsg = await response.text();
         setErrorMessage(errMsg);
         return;
       }
 
-      // Successo: mostra alert nella pagina principale e chiudi modale
       setSuccessMessage("✅ Prenotazione inviata con successo!");
       setTimeout(() => {
         handleCloseModal();
@@ -140,19 +174,18 @@ function Servizi() {
 
             <Form.Group className="mb-3" controlId="formDate">
               <Form.Label>Seleziona una data</Form.Label>
-              <Calendar onChange={setSelectedDate} value={selectedDate} minDate={new Date()} />
+              <Calendar onChange={handleDateChange} value={selectedDate} minDate={new Date()} />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formTime">
               <Form.Label>Seleziona un orario</Form.Label>
               <Form.Select value={time} onChange={(e) => setTime(e.target.value)} required>
                 <option value="">Seleziona un orario</option>
-                <option value="09:00">09:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
+                {allTimes.map((t) => (
+                  <option key={t} value={t} disabled={bookedTimes.includes(t)}>
+                    {t} {bookedTimes.includes(t) ? "⛔ Occupato" : ""}
+                  </option>
+                ))}
               </Form.Select>
             </Form.Group>
 

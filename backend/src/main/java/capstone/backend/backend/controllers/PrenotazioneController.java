@@ -38,7 +38,7 @@ public class PrenotazioneController {
         );
 
         String userMessage = String.format(
-                "Ciao %s,\n\nla tua prenotazione è stata confermata!\n\nDettagli:\nServizio: %s\nData: %s\nOra: %s\n\nGrazie per averci scelto!",
+                "Ciao %s,\n\nla tua prenotazione è stata confermata!\n\nDettagli:\nServizio: %s\nData: %s\nOra: %s\n\nTi aspetto!",
                 saved.getNome(), saved.getServizio(), saved.getData(), saved.getOra()
         );
 
