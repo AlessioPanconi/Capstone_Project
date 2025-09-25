@@ -21,8 +21,8 @@
 
 .navbar-toggler {
   border: none;
-  box-shadow: none;
   background: transparent;
+  box-shadow: none;
 }
 
 .navbar-toggler:focus,
@@ -30,6 +30,7 @@
   outline: none;
   box-shadow: none;
 }
+
 .homepage-logo {
   width: clamp(70px, 12vw, 125px);
   height: auto;

@@ -43,9 +43,9 @@ body {
 }
 
 .homepage-section {
-  text-align: center;
   max-width: 800px;
   margin: 0 auto;
+  text-align: center;
   background: transparent;
   color: white;
   padding: 2rem;

@@ -1,20 +1,15 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar, Mousewheel } from "swiper/modules";
+import { Row, Col } from "react-bootstrap";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "../css/HomePage.css";
-import { Row, Col } from "react-bootstrap";
+
+import image1 from "../assets/image1.jpg";
 
 function HomePage() {
   return (
-    <Swiper
-      direction="vertical"
-      slidesPerView={1}
-      modules={[Scrollbar, Mousewheel]}
-      mousewheel={true}
-      scrollbar={{ draggable: true }}
-      style={{ height: "100vh" }}
-    >
+    <Swiper direction="vertical" slidesPerView={1} modules={[Scrollbar, Mousewheel]} mousewheel scrollbar={{ draggable: true }} style={{ height: "100vh" }}>
       <SwiperSlide className="homepage-header">
         <h2>Benvenuti nella pagina della Dott.ssa Panconi</h2>
         <p>Uno spazio sicuro per ascoltarti, comprenderti e accompagnarti verso il tuo benessere.</p>
@@ -25,8 +20,8 @@ function HomePage() {
           <Col xs={12} md={7} className="text-center text-md-start">
             <h3>Chi sono?</h3>
             <p>
-              Sono una psicologa clinica con una passione profonda per il supporto a giovani adulti, adolescenti e coppie. Credo nell'importanza di creare un
-              ambiente accogliente e empatico, dove ogni persona possa sentirsi libera di esplorare sé stessa e crescere.
+              Sono una psicologa clinica con una passione profonda per il supporto a giovani adulti, adolescenti e coppie. Credo nell&apos;importanza di creare
+              un ambiente accogliente ed empatico, dove ogni persona possa sentirsi libera di esplorare sé stessa e crescere.
             </p>
             <p>
               Mi occupo di ascoltare, comprendere e accompagnare le persone verso il loro benessere, adattando il percorso alle esigenze individuali e alle
@@ -34,7 +29,7 @@ function HomePage() {
             </p>
           </Col>
           <Col xs={12} md={4} className="text-center mt-4 mt-md-0">
-            <img src="src/assets/image1.jpg" alt="Dott.ssa Panconi" className="homepage-circle-image" />
+            <img src={image1} alt="Dott.ssa Panconi" className="homepage-circle-image" />
           </Col>
         </Row>
       </SwiperSlide>
@@ -42,14 +37,15 @@ function HomePage() {
       <SwiperSlide className="homepage-section">
         <h3>Il mio percorso formativo</h3>
         <p>
-          Mi sono laureata in Psicologia Clinica e della Salute presso l’Università di Pisa, ho conseguito un master sulle dipendenze, comprese quelle
+          Mi sono laureata in Psicologia Clinica e della Salute presso l&apos;Università di Pisa, ho conseguito un master sulle dipendenze, comprese quelle
           affettive, e un corso da operatrice di centro antiviolenza.
         </p>
         <p>Ho inoltre completato il corso 101 AT e sto frequentando il terzo anno di specializzazione in psicoterapia psicodinamica integrata.</p>
         <h3>Il mio approccio terapeutico</h3>
         <p>
-          Nel mio lavoro unisco l’approccio psicodinamico con tecniche di altri orientamenti, modulando il percorso in base alle esigenze di ciascun paziente.
-          Credo nell’importanza di creare uno spazio accogliente e sicuro dove poter esplorare e comprendere le proprie emozioni e dinamiche relazionali.
+          Nel mio lavoro unisco l&apos;approccio psicodinamico con tecniche di altri orientamenti, modulando il percorso in base alle esigenze di ciascun
+          paziente. Credo nell&apos;importanza di creare uno spazio accogliente e sicuro dove poter esplorare e comprendere le proprie emozioni e dinamiche
+          relazionali.
         </p>
       </SwiperSlide>
 

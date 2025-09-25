@@ -49,7 +49,7 @@ function Servizi() {
     try {
       const response = await fetch(`http://localhost:3001/prenotazioni/giorno/${isoDate}`);
       const data = await response.json();
-      const times = data.map((p) => p.ora.slice(0, 5)); // prende solo HH:MM
+      const times = data.map((p) => p.ora.slice(0, 5));
       setBookedTimes(times);
     } catch (err) {
       console.error(err);
@@ -93,14 +93,19 @@ function Servizi() {
 
       if (!response.ok) {
         const errMsg = await response.text();
-        setErrorMessage(errMsg);
+        setErrorMessage(errMsg || "Errore nell'invio della prenotazione.");
         return;
       }
 
       setSuccessMessage("✅ Prenotazione inviata con successo!");
+
       setTimeout(() => {
         handleCloseModal();
-      }, 1500);
+      }, 500);
+
+      setTimeout(() => {
+        setSuccessMessage("");
+      }, 3000);
     } catch (err) {
       console.error(err);
       setErrorMessage("Errore di connessione al server");

@@ -3,29 +3,35 @@ import { Container, Row, Col, Form, Button, Card, Alert } from "react-bootstrap"
 import "../App.css";
 import "../css/Informazioni.css";
 
+import ufficioCapannori from "../assets/ufficio Capannori.jpg";
+import ufficioBocchette from "../assets/ufficio Bocchette.jpg";
+
 function Informazioni() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [messaggio, setMessaggio] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [formData, setFormData] = useState({
+    nome: "",
+    email: "",
+    messaggio: "",
+  });
+  const [feedback, setFeedback] = useState({ error: "", success: "" });
   const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFeedback({ error: "", success: "" });
 
-    setError("");
-    setSuccess("");
+    const { nome, email, messaggio } = formData;
 
     if (!nome || !email || !messaggio) {
-      setError("Per favore compila tutti i campi.");
-      return;
+      return setFeedback({ error: "Per favore compila tutti i campi." });
     }
 
-    const emailRegex = /\S+@\S+\.\S+/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     if (!emailRegex.test(email)) {
-      setError("Inserisci un'email valida.");
-      return;
+      return setFeedback({ error: "Inserisci un'email valida." });
     }
 
     try {
@@ -33,22 +39,21 @@ function Informazioni() {
       const response = await fetch("http://localhost:3001/contatti", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, messaggio }),
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
         const errMsg = await response.text();
-        setError(errMsg || "Errore nell'invio del messaggio.");
-        return;
+        return setFeedback({
+          error: errMsg || "Errore nell'invio del messaggio.",
+        });
       }
 
-      setSuccess("Messaggio inviato correttamente! ✅");
-      setNome("");
-      setEmail("");
-      setMessaggio("");
+      setFeedback({ success: "Messaggio inviato correttamente! ✅" });
+      setFormData({ nome: "", email: "", messaggio: "" });
     } catch (err) {
       console.error(err);
-      setError("Errore di connessione al server");
+      setFeedback({ error: "Errore di connessione al server" });
     } finally {
       setLoading(false);
     }
@@ -68,13 +73,13 @@ function Informazioni() {
               <h4 className="mb-3">I miei recapiti</h4>
               <p>
                 <i className="bi bi-telephone-fill me-3"></i>
-                <a href="tel:+393518179264" className="link">
+                <a href="tel:+393518179264" className="link" aria-label="Telefono">
                   +39 351 817 9264
                 </a>
               </p>
               <p>
                 <i className="bi bi-envelope-fill me-2"></i>
-                <a href="mailto:giuliapanconipsicologa@gmail.com" className="link">
+                <a href="mailto:giuliapanconipsicologa@gmail.com" className="link" aria-label="Email">
                   giuliapanconipsicologa@gmail.com
                 </a>
               </p>
@@ -82,7 +87,13 @@ function Informazioni() {
               <h4 className="mb-3">I miei social</h4>
               <p>
                 <i className="bi bi-instagram me-3"></i>
-                <a href="https://www.instagram.com/dott.ssapsico_giuliapanconi/" className="link" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://www.instagram.com/dott.ssapsico_giuliapanconi/"
+                  className="link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
                   Instagram
                 </a>
               </p>
@@ -96,9 +107,10 @@ function Informazioni() {
                     rel="noopener noreferrer"
                     className="link"
                   >
-                    <i className="bi bi-geo-alt-fill me-2"></i>Via del Fontana 18, Capannori
+                    <i className="bi bi-geo-alt-fill me-2"></i>
+                    Via del Fontana 18, Capannori
                   </a>
-                  <img src={"./src/assets/ufficio Capannori.jpg"} alt="Ufficio Capannori" className="office-image" />
+                  <img src={ufficioCapannori} alt="Ufficio Capannori" className="office-image" />
                 </div>
 
                 <div className="office-item">
@@ -108,9 +120,10 @@ function Informazioni() {
                     rel="noopener noreferrer"
                     className="link"
                   >
-                    <i className="bi bi-geo-alt-fill me-2"></i>Via del Commercio 6, Viareggio
+                    <i className="bi bi-geo-alt-fill me-2"></i>
+                    Via del Commercio 6, Viareggio
                   </a>
-                  <img src={"./src/assets/ufficio Bocchette.jpg"} alt="Ufficio Viareggio" className="office-image" />
+                  <img src={ufficioBocchette} alt="Ufficio Viareggio" className="office-image" />
                 </div>
               </div>
             </Card>
@@ -124,21 +137,28 @@ function Informazioni() {
               <Form onSubmit={handleSubmit} className="flex-grow-1 d-flex flex-column">
                 <Form.Group className="mb-3" controlId="formNome">
                   <Form.Label>Nome</Form.Label>
-                  <Form.Control type="text" placeholder="Inserisci il tuo nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+                  <Form.Control type="text" name="nome" placeholder="Inserisci il tuo nome" value={formData.nome} onChange={handleChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formEmail">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Inserisci la tua email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <Form.Control type="email" name="email" placeholder="Inserisci la tua email" value={formData.email} onChange={handleChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-4" controlId="formMessaggio">
                   <Form.Label>Messaggio</Form.Label>
-                  <Form.Control as="textarea" rows={5} placeholder="Scrivi il tuo messaggio" value={messaggio} onChange={(e) => setMessaggio(e.target.value)} />
+                  <Form.Control
+                    as="textarea"
+                    rows={5}
+                    name="messaggio"
+                    placeholder="Scrivi il tuo messaggio"
+                    value={formData.messaggio}
+                    onChange={handleChange}
+                  />
                 </Form.Group>
 
-                {error && <Alert variant="danger">{error}</Alert>}
-                {success && <Alert variant="success">{success}</Alert>}
+                {feedback.error && <Alert variant="danger">{feedback.error}</Alert>}
+                {feedback.success && <Alert variant="success">{feedback.success}</Alert>}
 
                 <Button variant="primary" type="submit" className="w-100 mt-auto" disabled={loading}>
                   {loading ? "Invio in corso..." : "Invia"}

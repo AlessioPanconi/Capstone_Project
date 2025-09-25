@@ -2,17 +2,23 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../css/NavBar.css";
 
+// Import corretto del logo
+import logo from "../assets/logo.png";
+
 function NavBar({ fixed }) {
   return (
     <Navbar expand="lg" className="navbar-custom" fixed={fixed}>
       <Container>
         <Navbar.Brand as={Link} to="/">
-          <img src={"../src/assets/logo.png"} alt="Logo Dott.ssa Panconi" className="homepage-logo" />
+          <img src={logo} alt="Logo Dott.ssa Panconi" className="homepage-logo" />
         </Navbar.Brand>
-        <Navbar.Toggle>
-          <i class="bi bi-three-dots-vertical"></i>
+
+        {/* Bottone toggle menu mobile */}
+        <Navbar.Toggle aria-controls="main-navbar">
+          <i className="bi bi-three-dots-vertical"></i>
         </Navbar.Toggle>
-        <Navbar.Collapse>
+
+        <Navbar.Collapse id="main-navbar">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/">
               Home
