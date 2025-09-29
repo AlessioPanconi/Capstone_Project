@@ -2,7 +2,6 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../css/NavBar.css";
 
-// Import corretto del logo
 import logo from "../assets/logo.png";
 
 function NavBar({ fixed }) {
@@ -13,7 +12,6 @@ function NavBar({ fixed }) {
           <img src={logo} alt="Logo Dott.ssa Panconi" className="homepage-logo" />
         </Navbar.Brand>
 
-        {/* Bottone toggle menu mobile */}
         <Navbar.Toggle aria-controls="main-navbar">
           <i className="bi bi-three-dots-vertical"></i>
         </Navbar.Toggle>
