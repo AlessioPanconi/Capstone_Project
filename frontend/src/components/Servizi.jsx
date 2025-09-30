@@ -101,11 +101,11 @@ function Servizi() {
 
       setTimeout(() => {
         handleCloseModal();
-      }, 500);
+      }, 250);
 
       setTimeout(() => {
         setSuccessMessage("");
-      }, 3000);
+      }, 4500);
     } catch (err) {
       console.error(err);
       setErrorMessage("Errore di connessione al server");
