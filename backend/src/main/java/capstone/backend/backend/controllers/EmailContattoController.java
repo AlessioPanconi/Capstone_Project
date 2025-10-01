@@ -35,9 +35,9 @@ public class EmailContattoController {
 
         emailService.sendEmail(
                 contatto.getEmail(),
-                "Grazie per averci contattato",
+                "Grazie per avermi contattato",
                 "Ciao " + contatto.getNome() + ",\n\n" +
-                        "Abbiamo ricevuto il tuo messaggio e ti risponderemo al più presto.\n\n" +
+                        "Ho ricevuto il tuo messaggio e ti risponderò al più presto.\n\n" +
                         "Il tuo messaggio: \n" + contatto.getMessaggio()
         );
 
